@@ -1,0 +1,25 @@
+.form {
+  position: relative;
+
+  &--red {
+    position: absolute;
+    left: 14%;
+    transform: translateY(-100%);
+
+    color: #f30;
+  }
+}
+
+#email,
+#password {
+  width: 70%;
+  transform: translateX(20%);
+}
+
+.button {
+  width: 35%;
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+}

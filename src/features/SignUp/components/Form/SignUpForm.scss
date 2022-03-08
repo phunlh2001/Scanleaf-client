@@ -1,0 +1,71 @@
+$lightBlue-color: #3498db;
+$darkBlue-color: #0652dd;
+
+.container-register {
+  background-image: url("../../../../assets/images/bg-form.svg");
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  width: 100vw;
+  height: 100vh;
+}
+
+.box {
+  width: 500px;
+  height: 90vh;
+
+  position: relative;
+  top: 2rem;
+  left: 50%;
+
+  transform: translateX(-50%);
+  background-color: #dce0e3;
+  border-radius: 10px;
+
+  &__title {
+    padding: 16px;
+    margin-bottom: 12px;
+
+    color: #333;
+
+    font-size: 40px;
+    font-weight: 700;
+
+    text-align: center;
+    text-shadow: 1px 2px #666;
+  }
+
+  &__ask-register {
+    text-align: center;
+    margin-top: 16px;
+
+    a {
+      text-decoration: none;
+      color: $lightBlue-color;
+      font-weight: bold;
+
+      &:hover {
+        color: $darkBlue-color;
+      }
+    }
+  }
+
+  .form {
+    position: relative;
+
+    &--red {
+      position: absolute;
+      left: 14%;
+      transform: translateY(-100%);
+      color: #f30;
+    }
+  }
+
+  #email,
+  #password,
+  #confirmPwd,
+  #fullname {
+    width: 70%;
+    transform: translateX(20%);
+  }
+}
