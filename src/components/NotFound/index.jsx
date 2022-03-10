@@ -10,8 +10,10 @@ function NotFound(props) {
           <h2 className="content__header" data-text="404">
             404
           </h2>
-          <h4 data-text="Opps! Page not found">Opps! Page not found</h4>
-          <p>
+          <h4 data-text="Opps! Page not found" className="content__title">
+            Opps! Page not found
+          </h4>
+          <p className="content__text">
             Sorry, the page you're looking for doesn't exist. If you think
             something is broken, report a problem.
           </p>

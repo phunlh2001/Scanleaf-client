@@ -67,7 +67,7 @@
       }
     }
 
-    h4 {
+    &__title {
       font-size: 1.5em;
       margin-bottom: 20px;
       text-transform: uppercase;
@@ -90,7 +90,7 @@
         -webkit-text-fill-color: transparent;
       }
     }
-    p {
+    &__text {
       font-size: 1.2em;
       color: #0d0d0d;
     }
