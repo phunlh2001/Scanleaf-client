@@ -19,7 +19,7 @@ function App() {
           <Route path="/scan-photos" element={<Scan />} exact />
           <Route path="/contact" element={<Contact />} exact />
           <Route path="/about-us" element={<About />} exact />
-          <Route element={<NotFound />} />
+          <Route path="/*" element={<NotFound />} />
         </Routes>
       </Router>
     </div>

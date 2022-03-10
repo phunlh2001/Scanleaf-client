@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import "./Input.scss";
 import { FaTimes, FaCloudUploadAlt } from "react-icons/fa";
+// import { Button } from "reactstrap";
 
 ScanInput.propTypes = {};
 

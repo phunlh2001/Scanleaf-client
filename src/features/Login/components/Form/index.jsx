@@ -24,6 +24,7 @@ function LoginForm(props) {
   const { userInfo, error } = user;
 
   const onSubmit = (data) => {
+    data.preventDefault();
     console.log(data);
     dispatch(login(data));
   };
