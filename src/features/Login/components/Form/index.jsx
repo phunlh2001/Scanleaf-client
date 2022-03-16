@@ -1,7 +1,4 @@
-import React, { useEffect } from "react";
-import * as yup from "yup";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { useForm } from "react-hook-form";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Form, Button, FormGroup, Input } from "reactstrap";
 import { useNavigate } from "react-router-dom";
@@ -9,41 +6,40 @@ import { login } from "../../../../redux/actions/UserAction";
 import "./LoginForm.scss";
 
 function LoginForm(props) {
-  let schema = yup.object().shape({
-    email: yup.string().required(),
-    password: yup.string().required().min(8),
-  });
-
-  const { register, handleSubmit } = useForm({
-    resolver: yupResolver(schema),
-  });
+  //hook
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   //use redux
   const dispatch = useDispatch();
   const user = useSelector((state) => state.UserLogin);
   const { userInfo, error } = user;
 
-  const onSubmit = (data) => {
-    data.preventDefault();
-    console.log(data);
-    dispatch(login(data));
-  };
-
+  //if logged in, redirect to home
   const navigate = useNavigate();
   useEffect(() => {
     if (userInfo) navigate("/");
   });
 
+  //============Handle Events============//
+  const handleSubmit = (e, data) => {
+    data = { email, password };
+    console.log(data);
+    e.preventDefault();
+    dispatch(login(data));
+  };
+
   return (
     <div className="main-form">
-      <Form className="form" onSubmit={handleSubmit(onSubmit)}>
+      <Form className="form" onSubmit={handleSubmit}>
         <FormGroup>
           <Input
             className="my-4"
             id="email"
             type="email"
             placeholder="Email..."
-            {...register("email")}
+            name="email"
+            onChange={(e) => setEmail(e.target.value)}
           />
         </FormGroup>
         <FormGroup>
@@ -52,7 +48,8 @@ function LoginForm(props) {
             id="password"
             type="password"
             placeholder="Password"
-            {...register("password")}
+            name="password"
+            onChange={(e) => setPassword(e.target.value)}
           />
         </FormGroup>
         <Button color="primary" className="button" type="submit">

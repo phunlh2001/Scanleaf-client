@@ -7,7 +7,7 @@ import {
 } from "../constants/constantTypes";
 
 //INITIALIZATION
-const INIT_STATE = { user: null };
+const INIT_STATE = { userInfo: null };
 
 /**
  * LOGIN REDUCER

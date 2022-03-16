@@ -1,7 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
-import * as yup from "yup";
-import { yupResolver } from "@hookform/resolvers/yup";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { signUp } from "../../../../redux/actions/UserAction";
@@ -10,91 +7,100 @@ import { FaLongArrowAltLeft } from "react-icons/fa";
 import "./SignUpForm.scss";
 
 function SignUpForm(props) {
-  let schema = yup.object().shape({
-    fullname: yup.string().required(),
-    email: yup.string().required(),
-    password: yup.string().required().min(8),
-    cPwd: yup.string().required().min(8),
-  });
-
-  const { register, handleSubmit } = useForm({
-    resolver: yupResolver(schema),
-  });
-
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [name, setName] = useState("");
+  const [fullname, setFullname] = useState("");
+  const [email, setEmail] = useState("");
 
   //redux
   const dispatch = useDispatch();
   const user = useSelector((state) => state.UserSignup);
-  const { userInfo, error } = user;
+  const { userInfo } = user;
 
+  //if logged in, redirect to home
   const navigate = useNavigate();
   useEffect(() => {
     if (userInfo) navigate("/");
   });
 
-  const onSubmit = (data) => {
+  //============Handle Events============//
+  const handleClick = (e) => {
     if (
-      !name.match(
+      !fullname.match(
         /^(([A-Za-z]+[-']?)*([A-Za-z]+)?\s)+([A-Za-z]+[-']?)*([A-Za-z]+)?$/
       )
     ) {
-      alert("Full name example: John Doe");
+      alert("Full name example: Nguyen Van A");
+      e.preventDefault();
     } else if (password !== confirmPassword) {
       alert("Repeat password is wrong!");
-    } else {
-      console.log(data);
-      dispatch(signUp(data));
+      e.preventDefault();
     }
+  };
+
+  const handleSubmit = (e, data) => {
+    data = { fullname, email, password, confirmPassword };
+
+    e.preventDefault();
+    console.log(data);
+    dispatch(signUp(data));
   };
 
   return (
     <div className="container-register">
       <div className="box">
         <h2 className="box__title">Sign Up to Scanleaf</h2>
-        <Form className="form" onSubmit={handleSubmit(onSubmit)}>
+        <Form onSubmit={handleSubmit} className="form">
           <FormGroup>
             <Input
+              name="fullname"
               className="my-4"
               id="fullname"
               type="text"
               placeholder="Full Name"
-              {...register("fullname")}
-              onChange={(e) => setName(e.target.value)}
+              onChange={(e) => setFullname(e.target.value)}
+              required
             />
           </FormGroup>
           <FormGroup>
             <Input
+              name="email"
               className="my-4"
               id="email"
               type="email"
               placeholder="Email"
-              {...register("email")}
+              onChange={(e) => setEmail(e.target.value)}
+              required
             />
           </FormGroup>
           <FormGroup>
             <Input
+              name="password"
               className="my-4"
               id="password"
               type="password"
               placeholder="Password"
-              {...register("password")}
               onChange={(e) => setPassword(e.target.value)}
+              required
             />
           </FormGroup>
           <FormGroup>
             <Input
+              name="cPwd"
               className="my-4"
               id="confirmPwd"
               type="password"
               placeholder="Confirm Password"
-              {...register("cPwd")}
               onChange={(e) => setConfirmPassword(e.target.value)}
+              required
             />
           </FormGroup>
-          <Button color="success" className="button" type="submit">
+          <Button
+            color="success"
+            className="button"
+            type="submit"
+            onClick={handleClick}
+          >
             Sign Up
           </Button>
         </Form>
