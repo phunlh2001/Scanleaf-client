@@ -19,7 +19,7 @@ function NotFound(props) {
           </p>
           <div className="btns">
             <Link to="/">Return home</Link>
-            <Link to="/Contact">Report problem</Link>
+            <Link to="/contact">Report problem</Link>
           </div>
         </div>
       </div>
