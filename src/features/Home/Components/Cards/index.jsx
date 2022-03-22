@@ -42,7 +42,7 @@ function HomeCard(props) {
           </CardText>
         </CardBody>
         <Button outline color="primary" size="sm">
-          View Details
+          Read More
         </Button>
       </Card>
     </div>

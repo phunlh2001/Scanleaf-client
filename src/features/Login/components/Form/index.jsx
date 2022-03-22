@@ -1,25 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Form, Button, FormGroup, Input } from "reactstrap";
-import { useNavigate } from "react-router-dom";
 import { login } from "../../../../redux/actions/UserAction";
 import "./LoginForm.scss";
 
 function LoginForm(props) {
-  //hook
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  //use redux
+  //============REDUX============//
   const dispatch = useDispatch();
   const user = useSelector((state) => state.UserLogin);
-  const { userInfo, error } = user;
-
-  //if logged in, redirect to home
-  const navigate = useNavigate();
-  useEffect(() => {
-    if (userInfo) navigate("/");
-  });
+  const { error } = user;
 
   //============Handle Events============//
   const handleSubmit = (e, data) => {

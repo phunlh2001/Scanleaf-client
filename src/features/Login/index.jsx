@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import LoginForm from "./components/Form";
 import { FaUser } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import SignIn from "../../firebase.config";
 import { FaLongArrowAltLeft } from "react-icons/fa";
 import "./Login.scss";
+import { useSelector } from "react-redux";
 
 function Login(props) {
   const [login, setLogin] = useState(false);
@@ -12,6 +13,15 @@ function Login(props) {
   const handleClick = () => {
     setLogin(true);
   };
+
+  //============REDUX============//
+  const user = useSelector((state) => state.UserLogin);
+  const { userInfo } = user;
+
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (userInfo) navigate("/");
+  });
 
   return (
     <div className="container-login">
