@@ -10,10 +10,12 @@ import { logout } from "../../redux/actions/UserAction";
 function Header() {
   const navigate = useNavigate();
 
+  //============REDUX============//
   const dispatch = useDispatch();
-  const user = useSelector((state) => state.UserLogin);
-  const { userInfo } = user;
+  const user = useSelector((state) => state.UserLogin); //global state
+  const { userInfo } = user; //destructuring
 
+  //============Handle Events============//
   const handleClick = () => {
     console.log("logout");
     dispatch(logout());

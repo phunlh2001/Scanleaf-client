@@ -15,10 +15,10 @@ function LoginForm(props) {
 
   //============Handle Events============//
   const handleSubmit = (e, data) => {
-    data = { email, password };
+    data = { email, password }; //destructuring
     console.log(data);
     e.preventDefault();
-    dispatch(login(data));
+    dispatch(login(data)); //async action
   };
 
   return (
