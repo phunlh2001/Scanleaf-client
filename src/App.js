@@ -7,6 +7,7 @@ import Contact from "./features/Contact";
 import About from "./features/About";
 import Login from "./features/Login";
 import SignUp from "./features/SignUp";
+import UserPage from "./features/UserPage";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path="/scan-photos" element={<Scan />} exact />
           <Route path="/contact" element={<Contact />} exact />
           <Route path="/about-us" element={<About />} exact />
+          <Route path="/profile" element={<UserPage />} exact />
           <Route path="/*" element={<NotFound />} />
         </Routes>
       </Router>

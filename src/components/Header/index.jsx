@@ -15,7 +15,7 @@ function Header() {
   const user = useSelector((state) => state.UserLogin); //global state
   const { userInfo } = user; //destructuring
 
-  //============Handle Events============//
+  //============Handle Events============//s
   const handleClick = () => {
     console.log("logout");
     dispatch(logout());
@@ -41,7 +41,9 @@ function Header() {
           </Col>
           {userInfo ? (
             <Col xs="auto" className="btn d-flex justify-content-end fw-bold">
-              <ImageAvatars />
+              <div className="px-4" onClick={() => navigate("/profile")}>
+                <ImageAvatars />
+              </div>
               <Button
                 color="secondary"
                 size="sm"
